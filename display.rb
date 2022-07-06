@@ -5,5 +5,6 @@ module Display
       row.each {|col| print " #{col} "}
       puts
     end
+    puts
   end
 end
