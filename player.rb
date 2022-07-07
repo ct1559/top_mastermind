@@ -4,7 +4,7 @@ class Player
   def initialize(name)
     @name = name
     @score = 0
-    @code = ""
+    @code = ''
   end
 
   def update_score(num)

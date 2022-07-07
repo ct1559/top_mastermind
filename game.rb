@@ -7,15 +7,17 @@ class Game
     @computer = computer
     @code = @computer.code
     @turn = 1
+    @game_over = false
   end
 
   def play
-    while @turn < 13 do
+    while @turn < 13 && @game_over == false do
       puts "Computer code: #{@code}"
-      @board.display(@board.game_board)
+      
       guess = get_guess
       feedback = check_guess(guess, @code)
       @board.update_board(@turn-2, guess, feedback)
+      @board.display(@board.game_board)
     end
   end
 
@@ -43,12 +45,15 @@ class Game
   def check_guess(guess, code)
     guess.map! {|char| char.to_i}
     if guess == code
-      puts "You guessed the secret code: #{code}!"
-      puts "Computer received has #{@computer.score} points!"
-      @turn = 13
+      @computer.update_score(@turn)
+      puts "You guessed the secret code: #{code.join("")}!"
+      puts "Computer has received #{@computer.score} points!"
+      @turn += 1
+      @game_over = true
     elsif @turn == 12
+      @computer.update_score(@turn)
       puts 'Unable to correctly guess in 12 turns :('
-      puts "Computer recieves #{@turn} points"
+      puts "Computer recieves #{@computer.score} points"
       @turn += 1
     else
       @turn += 1

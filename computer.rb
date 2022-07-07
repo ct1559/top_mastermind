@@ -23,9 +23,9 @@ class Computer
     guess.each_with_index do |num, index|
       if code.include?(num)
         if guess[index] == code[index]
-          feedback.push("R")
+          feedback.push('R')
         else
-          feedback.push("W")
+          feedback.push('W')
         end
       end
     end

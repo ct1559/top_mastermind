@@ -5,7 +5,7 @@ require_relative 'board'
 
 def play_game
   
-  puts "Enter player name:"
+  puts 'Enter player name:'
   name = gets
   player = Player.new(name.chomp)
   computer = Computer.new
